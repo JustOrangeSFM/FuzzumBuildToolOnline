@@ -26,6 +26,27 @@ jobs:
             build-tools;33.0.2
             ndk;25.1.8937393
 
+      # 🔑 Устанавливаем JAVA_HOME как переменную окружения для всего job
+      - name: Set JAVA_HOME env
+        run: echo "JAVA_HOME=${{ runner.tool_cache }}/Java_Temurin-Hotspot_jdk/17.0.17-10/x64" >> $GITHUB_ENV
+
+      # 🔧 Патчим environment.json: меняем пути под CI
+      - name: Patch environment.json for CI
+        run: |
+          $ndkPath = "C:\Android\android-sdk\ndk\25.1.8937393"
+          $sdkPath = "C:\Android\android-sdk"
+          $javaPath = "${{ runner.tool_cache }}\Java_Temurin-Hotspot_jdk\17.0.17-10\x64"
+          if (Test-Path environment.json) {
+            $json = Get-Content environment.json | ConvertFrom-Json
+            if ($json.Android) {
+              $json.Android.NDK = $ndkPath
+              $json.Android.SDK = $sdkPath
+              $json.Android.Java = $javaPath
+            }
+            $json | ConvertTo-Json -Depth 10 | Set-Content environment.json
+          }
+        shell: pwsh
+
       - name: Verify tools (CMD)
         shell: cmd
         run: |
