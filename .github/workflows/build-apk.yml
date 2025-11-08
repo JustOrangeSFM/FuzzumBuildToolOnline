@@ -17,14 +17,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      # 🔽 Скачиваем standalone NDK напрямую (гарантированно содержит clang++.exe)
+      # 🔽 Скачиваем standalone NDK напрямую из GitHub Releases
       - name: Download NDK r25b (standalone)
         run: |
           curl -L https://github.com/android/ndk/releases/download/ndk-r25b/android-ndk-r25b-windows.zip -o ndk.zip
           7z x ndk.zip -ondk
         shell: cmd
 
-      - name: Set up Android SDK (без NDK!)
+      # Устанавливаем только SDK (без NDK!)
+      - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
           cmdline-tools-version: "11076708"
@@ -55,7 +56,7 @@ jobs:
           if not exist "BuildToolCpp.exe" exit /b 1
           if not exist "[BUILD]BuildEngine[Android].bat" exit /b 1
           if not exist "ndk\android-ndk-r25b\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe" (
-            echo ERROR: clang++.exe not found in standalone NDK!
+            echo ERROR: clang++.exe not found!
             exit /b 1
           )
 
