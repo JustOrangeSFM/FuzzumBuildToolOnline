@@ -1,0 +1,59 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:  # кнопка "Run workflow" в GitHub
+
+jobs:
+  build:
+    runs-on: windows-2022  # Windows, чтобы запустить .exe
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          ndk: true
+          build-tools: "33.0.2"
+          platforms: "android-33"
+
+      - name: Verify tools
+        run: |
+          if not exist BuildTool.exe (exit 1)
+          if not exist ninja.exe (exit 1)
+
+      - name: Run build tool
+        run: |
+          .\BuildTool.exe --platform=android --config=release
+
+      - name: Run ninja (если не вызван из build tool)
+        run: |
+          .\ninja.exe -C .build\Android-arm64-Release
+
+      - name: Build APK (если нужно)
+        working-directory: ./android_template
+        run: |
+          .\build_apk.bat
+
+      - name: Find APK
+        id: find_apk
+        run: |
+          for /r %%i in (*.apk) do (
+            echo APK_PATH=%%i >> %GITHUB_ENV%
+            goto :done
+          )
+          exit 1
+          :done
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: game-apk
+          path: ${{ env.APK_PATH }}

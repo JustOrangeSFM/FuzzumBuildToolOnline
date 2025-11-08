@@ -1,0 +1,1 @@
+BuildToolCpp.exe build --project=Test/Engine.project --platform=Android
