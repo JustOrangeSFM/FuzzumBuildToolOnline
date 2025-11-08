@@ -1,0 +1,65 @@
+# Build outputs and temporary files
+/build/
+/.build/
+/.build/bin/
+/bin/
+/out/
+/.build/out/
+/GameProject/Compilled/
+/GameProject/Binaries/
+/GameProject/Intermediate/
+/GameProject/Saved/
+
+# NDK and SDK paths (CI-only, не должны быть в репозитории)
+/ndk/
+android-sdk/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+
+# Executables and binaries (Windows)
+*.exe
+*.dll
+*.pdb
+*.ilk
+*.exp
+*.lib
+
+# Ninja & build system files
+build.ninja
+.ninja_deps
+.ninja_log
+compile_commands.json
+
+# APKs and Android outputs
+*.apk
+*.aab
+*.jar
+*.aar
+
+# IDE and editor files
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Java / Gradle (если используется)
+.gradle/
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Environment and settings (если локальные)
+GameProject/Build/BuildSettings.json
+environment.json
+
+# Archives
+*.zip
+*.7z
+*.tar.gz
