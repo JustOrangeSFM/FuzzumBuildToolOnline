@@ -38,7 +38,7 @@ This repository provides a fully automated cloud-based build system using **GitH
 ### 5. **Start the build**
 - Go to **Actions** → enable workflows if prompted.
 - Select **Build Android APK** → **Run workflow**.
-- Wait 3–10 minutes.
+- Wait 1–3 minutes **(depends on the size of your project)**
 
 ### 6. **Download your APK**
 - When the workflow succeeds (green checkmark), scroll down to **Artifacts**.
