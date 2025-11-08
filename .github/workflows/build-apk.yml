@@ -25,13 +25,32 @@ jobs:
             platforms;android-33
             build-tools;33.0.2
 
-      # ✅ Скачиваем NDK через PowerShell — без пробелов в URL!
+      # ✅ Кэшируем standalone NDK по хэшу URL
+      - name: Cache Standalone NDK r25b
+        id: cache-ndk
+        uses: actions/cache@v4
+        with:
+          path: ndk
+          key: ndk-r25b-windows-${{ hashFiles('**/.github/workflows/build-android.yml') }}
+
+      # ✅ Скачиваем NDK только если кэш промахнулся
       - name: Download Standalone NDK r25b
+        if: steps.cache-ndk.outputs.cache-hit != 'true'
         shell: pwsh
         run: |
           Invoke-WebRequest -Uri "https://dl.google.com/android/repository/android-ndk-r25b-windows.zip" -OutFile "ndk.zip"
           mkdir ndk
           7z x ndk.zip -ondk
+
+      # ✅ Кэшируем Gradle и Android SDK (build-tools, licenses и т.д.)
+      - name: Cache Gradle and Android SDK
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            C:/Android/android-sdk
+          key: android-gradle-${{ runner.os }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
 
       # ✅ Патчим BuildSettings.json
       - name: Patch BuildSettings.json
@@ -57,9 +76,11 @@ jobs:
           if not exist "BuildToolCpp.exe" exit /b 1
           if not exist "[BUILD]BuildEngine[Android].bat" exit /b 1
 
-      - name: Run Android build
+      # ✅ Запускаем билд НЕИНТЕРАКТИВНО — обходим `pause`
+      - name: Run Android build (non-interactive)
         shell: cmd
-        run: call "[BUILD]BuildEngine[Android].bat"
+        run: |
+          echo. | call "[BUILD]BuildEngine[Android].bat"
 
       - name: Find APK
         id: find_apk
