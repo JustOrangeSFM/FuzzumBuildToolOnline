@@ -25,7 +25,7 @@ jobs:
             platforms;android-33
             build-tools;33.0.2
 
-      # ✅ Скачиваем standalone NDK и кладём ТОЧНО в ./ndk/android-ndk-r25b
+      # ✅ Скачиваем standalone NDK → ./ndk/android-ndk-r25b
       - name: Download Standalone NDK r25b
         run: |
           curl -L https://github.com/android/ndk/releases/download/ndk-r25b/android-ndk-r25b-windows.zip -o ndk.zip
@@ -33,10 +33,22 @@ jobs:
           7z x ndk.zip -ondk
         shell: cmd
 
-      # 🔍 Проверка (для отладки — можно убрать позже)
-      - name: Check clang++.exe exists
-        run: dir "ndk\android-ndk-r25b\toolchains\llvm\prebuilt\windows-x86_64\bin"
-        shell: cmd
+      # ✅ 🔁 Временно подменяем NDK путь в BuildSettings.json
+      - name: Patch BuildSettings.json for CI
+        run: |
+          $settingsPath = "GameProject\Build\BuildSettings.json"
+          if (Test-Path $settingsPath) {
+            $json = Get-Content $settingsPath | ConvertFrom-Json
+            $json.Android.NDK = "$(Get-Location)\ndk\android-ndk-r25b"
+            $json.Android.SDK = "C:\Android\android-sdk"
+            $json.Android.Java = "${{ runner.tool_cache }}\Java_Temurin-Hotspot_jdk\17.0.17-10\x64"
+            $json | ConvertTo-Json -Depth 10 | Set-Content $settingsPath
+            Write-Host "Patched NDK path to: $(Get-Location)\ndk\android-ndk-r25b"
+          } else {
+            Write-Error "BuildSettings.json not found!"
+            exit 1
+          }
+        shell: pwsh
 
       - name: Verify build files
         shell: cmd
