@@ -17,43 +17,39 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set up Android SDK + NDK
+      - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
-          ndk: true
-          cmdline-tools: true
-          build-tools: "33.0.2"
-          platforms: "android-33"
+          cmdline-tools-version: "11076708"
+          packages: |
+            platforms;android-33
+            build-tools;33.0.2
+            ndk;25.1.8937393
 
-      - name: Verify tools
+      - name: Verify tools (CMD)
+        shell: cmd
         run: |
           if not exist "BuildToolCpp.exe" exit /b 1
           if not exist "[BUILD]BuildEngine[Android].bat" exit /b 1
 
-      # 💡 Устанавливаем переменные окружения для C++17 в NDK
-      - name: Set NDK C++17 flags
+      - name: Run Android build script (CMD)
+        shell: cmd
         run: |
-          echo ##[set-env name=NDK_CPPFLAGS] -std=c++17 -D_LIBCPP_ABI_VERSION=2 -D_LIBCPP_HARDENING_MODE=_LIBCPP_HARDENING_MODE_EXTENSIVE
+          call "[BUILD]BuildEngine[Android].bat"
 
-      # 🔥 Запускаем твой BAT-файл
-      - name: Run Android build script
-        run: |
-          .\"[BUILD]BuildEngine[Android].bat"
-
-      # Поиск APK
       - name: Find APK
         id: find_apk
+        shell: cmd
         run: |
           for /r %%i in (*.apk) do (
             echo APK_PATH=%%i
-            echo APK_PATH=%%i >> %GITHUB_ENV%
+            echo APK_PATH=%%i>>%GITHUB_ENV%
             goto :done
           )
           echo ERROR: APK not found!
           exit /b 1
           :done
 
-      # ✅ Используем v4!
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
