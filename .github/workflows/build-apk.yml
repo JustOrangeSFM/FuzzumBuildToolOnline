@@ -17,7 +17,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set up Android SDK (without NDK)
+      - name: Set up Android SDK (NO NDK!)
         uses: android-actions/setup-android@v3
         with:
           cmdline-tools-version: "11076708"
@@ -25,20 +25,20 @@ jobs:
             platforms;android-33
             build-tools;33.0.2
 
-      # 🔽 Скачиваем и кладём NDK ТОЧНО туда, где ожидает BuildSettings.json
-      - name: Download and place NDK to ./ndk/android-ndk-r25b
+      # ✅ Скачиваем standalone NDK и кладём ТОЧНО в ./ndk/android-ndk-r25b
+      - name: Download Standalone NDK r25b
         run: |
           curl -L https://github.com/android/ndk/releases/download/ndk-r25b/android-ndk-r25b-windows.zip -o ndk.zip
           mkdir ndk
           7z x ndk.zip -ondk
         shell: cmd
 
-      # Проверка (опционально)
-      - name: Verify NDK path
+      # 🔍 Проверка (для отладки — можно убрать позже)
+      - name: Check clang++.exe exists
         run: dir "ndk\android-ndk-r25b\toolchains\llvm\prebuilt\windows-x86_64\bin"
         shell: cmd
 
-      - name: Verify build files exist
+      - name: Verify build files
         shell: cmd
         run: |
           if not exist "BuildToolCpp.exe" exit /b 1
