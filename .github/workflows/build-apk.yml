@@ -25,24 +25,23 @@ jobs:
             platforms;android-33
             build-tools;33.0.2
 
-      # ✅ Кэшируем только папку NDK
+      # === NDK: кэш + безопасная загрузка ===
       - name: Cache Standalone NDK r25b
         id: cache-ndk
         uses: actions/cache@v4
         with:
           path: ndk
-          key: ndk-r25b-windows-v1
+          key: ndk-r25b-windows-v2
 
-      # ✅ Скачиваем NDK с ПРАВИЛЬНОГО URL и БЕЗ пробелов
-      - name: Download Standalone NDK r25b
+      - name: Download Standalone NDK r25b (if not cached)
         if: steps.cache-ndk.outputs.cache-hit != 'true'
         shell: pwsh
         run: |
-          Invoke-WebRequest -Uri "https://dl.google.com/android/repository/android-ndk-r25b-windows.zip" -OutFile "ndk.zip"
+          Invoke-WebRequest -Uri "https://github.com/android/ndk/releases/download/ndk-r25b/android-ndk-r25b-windows.zip" -OutFile "ndk.zip"
           mkdir ndk
           7z x ndk.zip -ondk
 
-      # ✅ Безопасное кэширование Gradle (без .lock-файлов!)
+      # === Gradle: безопасное кэширование (без .lock!) ===
       - name: Cache Gradle Dependencies
         uses: actions/cache@v4
         with:
@@ -51,10 +50,10 @@ jobs:
             ~/.gradle/caches/transforms-3/files-3.1
             ~/.gradle/caches/jars-9
             ~/.gradle/wrapper
-          key: gradle-safe-${{ runner.os }}-v1
+          key: gradle-safe-win-v2
           enableCrossOsArchive: true
 
-      # ✅ Патчим BuildSettings.json
+      # === Патчим BuildSettings.json ===
       - name: Patch BuildSettings.json
         shell: pwsh
         run: |
@@ -72,18 +71,20 @@ jobs:
           $json | ConvertTo-Json -Depth 10 | Set-Content $path
           Write-Host "Patched NDK to: $ndkPath"
 
+      # === Проверка инструментов ===
       - name: Verify tools
         shell: cmd
         run: |
           if not exist "BuildToolCpp.exe" exit /b 1
           if not exist "[BUILD]BuildEngine[Android].bat" exit /b 1
 
-      # ✅ НЕИНТЕРАКТИВНЫЙ запуск — обход pause
+      # === Сборка (НЕИНТЕРАКТИВНО) ===
       - name: Run Android build
         shell: cmd
         run: |
           echo. | call "[BUILD]BuildEngine[Android].bat"
 
+      # === Найти и загрузить APK ===
       - name: Find APK
         id: find_apk
         shell: cmd
