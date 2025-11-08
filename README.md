@@ -6,7 +6,7 @@ Compile your **FuzzumEngine** game project into an Android APK — **entirely fr
 
 This repository provides a fully automated cloud-based build system using **GitHub Actions**. Just fork, upload your project, and get a ready-to-install APK in minutes.
 
-> ✨ Works on **Android** — all you need is a browser.
+> ✨ all you need is a browser.
 
 ---
 
