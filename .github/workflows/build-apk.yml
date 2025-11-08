@@ -25,15 +25,15 @@ jobs:
             platforms;android-33
             build-tools;33.0.2
 
-      # ✅ Скачиваем NDK через PowerShell — надёжно
+      # ✅ Скачиваем NDK через PowerShell — без пробелов в URL!
       - name: Download Standalone NDK r25b
         shell: pwsh
         run: |
-          Invoke-WebRequest -Uri "https://github.com/android/ndk/releases/download/ndk-r25b/android-ndk-r25b-windows.zip" -OutFile "ndk.zip"
+          Invoke-WebRequest -Uri "https://dl.google.com/android/repository/android-ndk-r25b-windows.zip" -OutFile "ndk.zip"
           mkdir ndk
           7z x ndk.zip -ondk
 
-      # ✅ Патчим BuildSettings.json — ИСПРАВЛЕНА СТРУКТУРА YAML
+      # ✅ Патчим BuildSettings.json
       - name: Patch BuildSettings.json
         shell: pwsh
         run: |
