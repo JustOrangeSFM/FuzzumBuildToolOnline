@@ -5,7 +5,7 @@
   },
   "Android": {
     "SDK": "C:/Android/android-sdk",
-    "NDK": "./ndk/android-ndk-r25b",
+    "NDK": "C:\\Android\\android-sdk\\ndk\\25.1.8937393",
     "Java": "C:/hostedtoolcache/windows/Java_Temurin-Hotspot_jdk/17.0.17-10/x64"
   }
 }
