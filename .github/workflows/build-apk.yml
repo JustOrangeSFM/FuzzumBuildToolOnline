@@ -25,15 +25,15 @@ jobs:
             platforms;android-33
             build-tools;33.0.2
 
-      # ✅ Кэшируем standalone NDK по хэшу URL
+      # ✅ Кэшируем только папку NDK
       - name: Cache Standalone NDK r25b
         id: cache-ndk
         uses: actions/cache@v4
         with:
           path: ndk
-          key: ndk-r25b-windows-${{ hashFiles('**/.github/workflows/build-android.yml') }}
+          key: ndk-r25b-windows-v1
 
-      # ✅ Скачиваем NDK только если кэш промахнулся
+      # ✅ Скачиваем NDK с ПРАВИЛЬНОГО URL и БЕЗ пробелов
       - name: Download Standalone NDK r25b
         if: steps.cache-ndk.outputs.cache-hit != 'true'
         shell: pwsh
@@ -42,15 +42,17 @@ jobs:
           mkdir ndk
           7z x ndk.zip -ondk
 
-      # ✅ Кэшируем Gradle и Android SDK (build-tools, licenses и т.д.)
-      - name: Cache Gradle and Android SDK
+      # ✅ Безопасное кэширование Gradle (без .lock-файлов!)
+      - name: Cache Gradle Dependencies
         uses: actions/cache@v4
         with:
           path: |
-            ~/.gradle/caches
+            ~/.gradle/caches/modules-2/files-2.1
+            ~/.gradle/caches/transforms-3/files-3.1
+            ~/.gradle/caches/jars-9
             ~/.gradle/wrapper
-            C:/Android/android-sdk
-          key: android-gradle-${{ runner.os }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+          key: gradle-safe-${{ runner.os }}-v1
+          enableCrossOsArchive: true
 
       # ✅ Патчим BuildSettings.json
       - name: Patch BuildSettings.json
@@ -76,8 +78,8 @@ jobs:
           if not exist "BuildToolCpp.exe" exit /b 1
           if not exist "[BUILD]BuildEngine[Android].bat" exit /b 1
 
-      # ✅ Запускаем билд НЕИНТЕРАКТИВНО — обходим `pause`
-      - name: Run Android build (non-interactive)
+      # ✅ НЕИНТЕРАКТИВНЫЙ запуск — обход pause
+      - name: Run Android build
         shell: cmd
         run: |
           echo. | call "[BUILD]BuildEngine[Android].bat"
