@@ -17,23 +17,26 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set up Android SDK
+      - name: Download NDK r25b (standalone)
+        run: |
+          curl -L https://github.com/android/ndk/releases/download/ndk-r25b/android-ndk-r25b-windows.zip -o ndk.zip
+          7z x ndk.zip -ondk
+        shell: cmd
+
+      - name: Set up Android SDK (без NDK!)
         uses: android-actions/setup-android@v3
         with:
           cmdline-tools-version: "11076708"
           packages: |
             platforms;android-33
             build-tools;33.0.2
-            ndk;25.1.8937393
 
-      # 🔑 Устанавливаем JAVA_HOME как переменную окружения для всего job
-      - name: Set JAVA_HOME env
+      - name: Set JAVA_HOME
         run: echo "JAVA_HOME=${{ runner.tool_cache }}/Java_Temurin-Hotspot_jdk/17.0.17-10/x64" >> $GITHUB_ENV
 
-      # 🔧 Патчим environment.json: меняем пути под CI
       - name: Patch environment.json for CI
         run: |
-          $ndkPath = "C:\Android\android-sdk\ndk\25.1.8937393"
+          $ndkPath = "$(Get-Location)\ndk\android-ndk-r25b"
           $sdkPath = "C:\Android\android-sdk"
           $javaPath = "${{ runner.tool_cache }}\Java_Temurin-Hotspot_jdk\17.0.17-10\x64"
           if (Test-Path environment.json) {
@@ -47,13 +50,17 @@ jobs:
           }
         shell: pwsh
 
-      - name: Verify tools (CMD)
+      - name: Verify tools
         shell: cmd
         run: |
           if not exist "BuildToolCpp.exe" exit /b 1
           if not exist "[BUILD]BuildEngine[Android].bat" exit /b 1
+          if not exist "ndk\android-ndk-r25b\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe" (
+            echo ERROR: clang++.exe not found in standalone NDK!
+            exit /b 1
+          )
 
-      - name: Run Android build script (CMD)
+      - name: Run Android build script
         shell: cmd
         run: |
           call "[BUILD]BuildEngine[Android].bat"
