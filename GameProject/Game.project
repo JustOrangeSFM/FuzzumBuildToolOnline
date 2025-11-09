@@ -1,7 +1,7 @@
 {
   "Name": "MyGame",
   "Type": "Game",
-  "EnginePath": "D:/FuzzumBuildToolOnline/Engine/Engine",
+  "EnginePath": "D:/a/FuzzumBuildToolOnline/FuzzumBuildToolOnline/Engine/Engine",
   "Modules": [
     "Game"
   ],
