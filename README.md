@@ -26,6 +26,7 @@ This repository provides a fully automated cloud-based build system using **GitH
 - Tap **Add file** → **Upload files**.
 - Select your entire game project (must include your `.project` file and `Source/` folder and etc.).
 - Ensure it’s placed under `GameProject/YourGame/`.
+- Change your game project -> find "EnginePath" and it should be like this `"EnginePath": "D:/a/FuzzumBuildToolOnline/FuzzumBuildToolOnline/Engine/Engine",`
 
 ### 4. **Configure the build script**
 - Open `[BUILD]BuildEngine[Android].bat`
