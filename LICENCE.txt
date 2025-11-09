@@ -1,0 +1,70 @@
+FuzzumBuildToolOnline – Build System License  
+Copyright © 2025 Orange SFM  
+All Rights Reserved  
+
+The files in this repository — including build scripts (.bat),  
+GitHub Actions workflows (.yml), documentation, and example projects —  
+are provided under the following terms:
+
+1. **Permission**  
+   You may use, modify, and redistribute the **scripts and documentation**  
+   for any purpose, including commercial use, provided this license  
+   and copyright notice are retained.
+
+2. **Proprietary Tools**  
+   The following components are **NOT open source** and are **excluded**  
+   from this license:  
+   - `BuildToolCpp.exe`  
+   - Fuzzum Engine binaries  
+   - Pre-compiled build dependencies  
+   These are provided **strictly for use within this repository’s  
+   GitHub Actions workflow**.
+
+3. **Restrictions**  
+   You may **NOT**:  
+   - Download, extract, or redistribute `BuildToolCpp.exe` or any binary;  
+   - Reverse engineer, decompile, or disassemble the proprietary tools;  
+   - Use the tools outside the context of this cloud build system.
+
+4. **No Warranty**  
+   THE SCRIPTS AND TOOLS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.  
+   ORANGE SFM DISCLAIMS ALL LIABILITY FOR ANY DAMAGES ARISING FROM THEIR USE.
+
+By using this repository, you agree to these terms.
+
+
+
+
+FuzzumBuildToolOnline – Лицензия на систему сборки  
+Авторское право © 2025 Orange SFM  
+Все права защищены  
+
+Файлы в этом репозитории — включая скрипты сборки (.bat),  
+рабочие процессы GitHub Actions (.yml), документацию и примеры —  
+предоставляются на следующих условиях:
+
+1. **Разрешение**  
+   Вы можете использовать, изменять и распространять **скрипты и документацию**  
+   в любых целях, включая коммерческие, при условии сохранения  
+   настоящей лицензии и уведомления об авторском праве.
+
+2. **Проприетарные инструменты**  
+   Следующие компоненты **НЕ являются open source** и **исключены**  
+   из действия этой лицензии:  
+   - `BuildToolCpp.exe`  
+   - Бинарные файлы Fuzzum Engine  
+   - Предварительно скомпилированные зависимости  
+   Они предоставляются **исключительно для использования  
+   в рамках workflow этого репозитория на GitHub Actions**.
+
+3. **Ограничения**  
+   Запрещается:  
+   - Скачивать, извлекать или распространять `BuildToolCpp.exe` или любые бинарники;  
+   - Выполнять обратную разработку, декомпиляцию или дизассемблирование;  
+   - Использовать инструменты вне этой облачной системы сборки.
+
+4. **Без гарантий**  
+   СКРИПТЫ И ИНСТРУМЕНТЫ ПРЕДОСТАВЛЯЮТСЯ «КАК ЕСТЬ», БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ.  
+   ORANGE SFM НЕ НЕСЁТ ОТВЕТСТВЕННОСТИ ЗА ЛЮБОЙ УЩЕРБ, ВОЗНИКШИЙ ПРИ ИХ ИСПОЛЬЗОВАНИИ.
+
+Используя этот репозиторий, вы принимаете настоящие условия.
