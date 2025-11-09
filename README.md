@@ -69,9 +69,8 @@ YourGame/
 
 ## ⚠️ Notes
 
-- Do **not** commit `ndk/`, `BuildSettings.json`, or build outputs — they’re generated automatically.
+- Do **not** commit folder `Build` in projects or build outputs — they’re generated automatically.
 - The build uses **NDK r25b**, **JDK 17**, and **Android SDK 33**.
-- APK is built in **debug mode** (for quick iteration). For release, modify the workflow.
 
 ---
 
