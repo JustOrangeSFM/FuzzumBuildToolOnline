@@ -1,0 +1,11 @@
+{
+  "Name": "EditorCore",
+  "Type": "DynamicLibrary",
+  "SourceFiles": ["/Private/**/*.cpp"],
+  "PublicIncludePaths": ["Public", "Public/ModuleManager"],
+  "PublicDependencyModules": ["AudioSystem", "FuzzumShaderLoader"],
+  "PrivateDependencyModules": [],
+  "Platforms": ["Windows", "Android"],
+  "BuildDefines": ["EDITORCORE_EXPORTS"],
+  "Enabled": true
+}

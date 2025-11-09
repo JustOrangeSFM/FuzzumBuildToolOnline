@@ -1,0 +1,10 @@
+{
+  "Name": "Game",
+  "Type": "Executable",
+  "SourceFiles": ["/**/*.cpp"],
+  "PublicIncludePaths": [],
+  "PublicDependencyModules": ["EditorCore", "AudioSystem", "FuzzumShaderLoader"],
+  "Platforms": ["Windows", "Android"],
+  "BuildDefines": ["NDEBUG"],
+  "Enabled": true
+}

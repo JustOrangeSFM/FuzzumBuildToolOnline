@@ -1,0 +1,10 @@
+{
+  "Name": "FuzzumShaderLoader",
+  "Type": "DynamicLibrary",
+  "SourceFiles": ["/**/*.cpp"],
+  "PublicIncludePaths": ["Public"],
+  "Platforms": ["Windows", "Android"],
+  "PublicDependencyModules": ["EditorCore"],
+  "BuildDefines": ["NDEBUG"],
+  "Enabled": true
+}

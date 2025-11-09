@@ -1,0 +1,9 @@
+{
+  "Name": "Logger",
+  "Type": "DynamicLibrary",
+  "SourceFiles": ["/**/*.cpp"],
+  "PublicIncludePaths": ["Public"],
+  "Platforms": ["Windows", "Android"],
+  "BuildDefines": ["NDEBUG"],
+  "Enabled": true
+}

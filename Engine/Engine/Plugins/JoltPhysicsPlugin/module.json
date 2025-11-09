@@ -1,0 +1,14 @@
+{
+  "Name": "JoltPhysicePlugin",
+  "Type": "DynamicLibrary",
+  "SourceFiles": [
+    "/JoltPhysics-master/Jolt/**/*.cpp"
+  ],
+  "PublicIncludePaths": [
+      "JoltPhysics-master", 
+      "JoltPhysics-master/Jolt"
+  ],
+  "Platforms": ["Windows", "Android"],
+  "BuildDefines": ["NDEBUG"],
+  "Enabled": true
+}

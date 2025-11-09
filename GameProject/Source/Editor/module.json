@@ -1,8 +1,0 @@
-{
-  "Name": "Editor",
-  "Type": "Executable",
-  "SourceFiles": ["/**/*.cpp"],
-  "PublicIncludePaths": ["Public"],
-  "PublicDependencyModules": ["Core"],
-  "Platforms": ["Windows", "Android"]
-}

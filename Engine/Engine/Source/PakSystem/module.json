@@ -1,0 +1,9 @@
+{
+  "Name": "PakSystem",
+  "Type": "DynamicLibrary",
+  "SourceFiles": ["/Private/lz4.c"],
+  "PublicIncludePaths": ["Public"],
+  "Platforms": ["Windows", "Android"],
+  "BuildDefines": ["NDEBUG"],
+  "Enabled": true
+}

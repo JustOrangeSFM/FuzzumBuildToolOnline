@@ -1,1 +1,1 @@
-BuildToolCpp.exe build --project=GameProject/Engine.project --platform=Android
+"BuildToolCpp.exe" build --project=GameProject/Game.project --platform=Android

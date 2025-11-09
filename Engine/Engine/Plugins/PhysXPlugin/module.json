@@ -1,0 +1,106 @@
+{
+  "Name": "PhysXPlugin",
+  "Type": "DynamicLibrary",
+  "SourceFiles": [
+    "/PhysX-4.1/physx/Private/source/foundation/src/**/*.cpp",
+    "/PhysX-4.1/physx/Private/source/common/src/**/*.cpp",
+    "/PhysX-4.1/physx/Private/source/geomutils/src/**/*.cpp",
+    "/PhysX-4.1/physx/Private/source/lowlevel/**/*.cpp",
+    "/PhysX-4.1/physx/Private/source/lowleveldynamics/src/**/*.cpp",
+    "/PhysX-4.1/physx/Private/source/physx/**/*.cpp",
+    "/PhysX-4.1/physx/Private/source/physxcharacterkinematic/src/**/*.cpp",
+    "/PhysX-4.1/physx/Private/source/physxcooking/src/**/*.cpp",
+    "/PhysX-4.1/physx/Private/source/physxextensions/src/**/*.cpp",
+    "/PhysX-4.1/physx/Private/source/scenequery/src/**/*.cpp",
+    "/PhysX-4.1/physx/Private/source/simulationcontroller/src/**/*.cpp",
+    "/PhysX-4.1/physx/Private/source/physxvehicle/src/**/*.cpp",
+    "/PhysX-4.1/physx/Private/source/physxmetadata/**/*.cpp",
+    "/PhysX-4.1/physx/Private/source/fastxml/src/**/*.cpp"
+  ],
+  "PublicIncludePaths": [
+      "PhysX-4.1/physx/include", 
+	"PhysX-4.1/pxshared/include", 
+	"PhysX-4.1/physx/Private/source/foundation/include", 
+	"PhysX-4.1/physx/Private/source/fastxml/include", 
+
+	"PhysX-4.1/physx/Private/source/common/include",
+	"PhysX-4.1/physx/Private/source/common/include/pipeline", 
+	"PhysX-4.1/physx/Private/source/common/include/collision", 
+	"PhysX-4.1/physx/Private/source/common/include/utils", 
+      "PhysX-4.1/physx/Private/source/common/src",
+
+	"PhysX-4.1/physx/Private/source/geomutils/include",
+	"PhysX-4.1/physx/Private/source/geomutils/src/ccd",
+	"PhysX-4.1/physx/Private/source/geomutils/src/common",
+	"PhysX-4.1/physx/Private/source/geomutils/src/contact",
+	"PhysX-4.1/physx/Private/source/geomutils/src/convex",
+	"PhysX-4.1/physx/Private/source/geomutils/src/distance",
+	"PhysX-4.1/physx/Private/source/geomutils/src/gjk",
+	"PhysX-4.1/physx/Private/source/geomutils/src/hf",
+	"PhysX-4.1/physx/Private/source/geomutils/src/intersection",
+	"PhysX-4.1/physx/Private/source/geomutils/src/mesh",
+	"PhysX-4.1/physx/Private/source/geomutils/src/pcm",
+	"PhysX-4.1/physx/Private/source/geomutils/src/sweep",
+	"PhysX-4.1/physx/Private/source/geomutils/src",
+
+
+	"PhysX-4.1/physx/Private/source/lowlevel/software/include",
+	"PhysX-4.1/physx/Private/source/lowlevel/api/include",
+	"PhysX-4.1/physx/Private/source/lowlevel/common/include",
+	"PhysX-4.1/physx/Private/source/lowlevel/common/include/collision",
+	"PhysX-4.1/physx/Private/source/lowlevel/common/include/pipeline",
+	"PhysX-4.1/physx/Private/source/lowlevel/common/include/utils",
+
+
+	"PhysX-4.1/physx/Private/source/lowlevelaabb/include",
+
+	"PhysX-4.1/physx/Private/source/lowleveldynamics/include",
+
+	"PhysX-4.1/physx/Private/source/physx/src",
+	"PhysX-4.1/physx/Private/source/physx/src/buffering",
+	"PhysX-4.1/physx/Private/source/physx/src/device",
+	"PhysX-4.1/physx/Private/source/physx/src/gpu",
+	"PhysX-4.1/physx/Private/source/physx/src/windows",
+
+
+
+	"PhysX-4.1/physx/Private/source/physxcharacterkinematic/src",
+
+
+	"PhysX-4.1/physx/Private/source/physxcooking/src",
+	"PhysX-4.1/physx/Private/source/physxcooking/src/convex",
+	"PhysX-4.1/physx/Private/source/physxcooking/src/mesh",
+	"PhysX-4.1/physx/Private/source/physxcooking/src/windows",
+
+
+	"PhysX-4.1/physx/Private/source/physxextensions/src",
+	"PhysX-4.1/physx/Private/source/physxextensions/src/serialization",
+
+
+	"PhysX-4.1/physx/Private/source/physxgpu/include",
+
+
+	"PhysX-4.1/physx/Private/source/physxmetadata/core/include",
+	"PhysX-4.1/physx/Private/source/physxmetadata/extensions/include",
+
+
+	"PhysX-4.1/physx/Private/source/physxvehicle/src",
+	"PhysX-4.1/physx/Private/source/physxvehicle/src/physxmetadata",
+
+
+	"PhysX-4.1/physx/Private/source/scenequery/include",
+	"PhysX-4.1/physx/Private/source/scenequery/src",
+
+
+	"PhysX-4.1/physx/Private/source/simulationcontroller/include",
+
+	"PhysX-4.1/physx/Private/source/simulationcontroller/src"
+
+
+	
+
+  ],
+  "Platforms": ["Windows", "Android"],
+  "BuildDefines": ["NDEBUG", "PX_PHYSX_STATIC_LIB"],
+  "Enabled": false
+}

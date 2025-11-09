@@ -1,0 +1,8 @@
+{
+  "Name": "BlankPlugin",
+  "Type": "DynamicLibrary",
+  "SourceFiles": ["/Private/*.cpp"],
+  "PublicIncludePaths": ["Public"],
+  "Platforms": ["Windows", "Android"],
+  "Enabled": true
+}
