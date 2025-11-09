@@ -16,5 +16,14 @@
     #define EDITORCORE_API
 #endif
 
+//Entry Points
+#if defined(__ANDROID__)
+    #define START_GAME() \
+        __attribute__((constructor)) static void on_library_loaded()
+#else
+    #define START_GAME() \
+        int main()
+#endif
+
 extern "C" EDITORCORE_API int RunEditor();
 extern "C" EDITORCORE_API int RunGame();
