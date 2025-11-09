@@ -4,8 +4,8 @@
     "WindowsSDK": "10.0.22621.0"
   },
   "Android": {
-    "SDK": "D:/AndroidStudio_SDK",
-    "NDK": "D:/BuildToolCpp/x64/Release/FuzzumEngine/Engine/Build/Android/NDK/25.1.8937393",
-    "Java": "D:/BuildToolCpp/x64/Release/FuzzumEngine/Engine/Build/Android/jdk/corretto-17.0.13"
+    "SDK": "C:/Android/android-sdk",
+    "NDK": "D:/a/FuzzumBuildToolOnline/FuzzumBuildToolOnline/NDK/25.1.8937393",
+    "Java": "C:/hostedtoolcache/windows/Java_Temurin-Hotspot_jdk/17.0.17-10/x64"
   }
 }
