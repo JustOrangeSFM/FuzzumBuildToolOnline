@@ -82,7 +82,7 @@ YourGame/
 - Build scripts and documentation: **MIT License**
 - `BuildToolCpp.exe`, engine binaries, and internal tools: **Proprietary — not licensed for redistribution**
 
-Full license: [LICENSE](./LICENSE)
+Full license: [LICENSE](./LICENSE.txt)
 
 ---
 
