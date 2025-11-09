@@ -1,9 +1,0 @@
-AudioSystem
-Editor
-FuzzumShaderLoader
-
-
-1 Editor dep in for expl AudioSystem* in module.json
-2 Creating Module file and ther like AudioSystem and FuzzumShLo
-3 In Editor main exec in module.json for example we connect Any modules
-4 using this for example in GlobalEngine.cpp 
