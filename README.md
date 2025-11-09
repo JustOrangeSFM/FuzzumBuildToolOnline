@@ -1,87 +1,185 @@
+```
+# FuzzumBuildToolOnline  
+### Build Fuzzum Engine games for Android — directly from your phone 📱
+
+Compile your **Fuzzum Engine** project into a signed **Android APK** — **no PC, no Termux, no setup required**.  
+Powered by **GitHub Actions**, this repository provides a **fully automated cloud build system** that works entirely in your mobile browser.
+
+> ✨ All you need: a GitHub account and a smartphone.
+
 ---
 
-# FuzzumBuildToolOnline
+## 🇬🇧 English
 
-Compile your **FuzzumEngine** game project into an Android APK — **entirely from your phone**, with **no computer required**.
+### 🚀 How to Use (Mobile-Friendly)
 
-This repository provides a fully automated cloud-based build system using **GitHub Actions**. Just fork, upload your project, and get a ready-to-install APK in minutes.
+#### 1. **Fork this repository**
+- Open [github.com/JustOrangeSFM/FuzzumBuildToolOnline](https://github.com/JustOrangeSFM/FuzzumBuildToolOnline) on your phone.
+- Tap **Fork** (top-right) → select your account.
 
-> ✨ all you need is a browser.
+#### 2. **Clear the example project**
+- Go to the `GameProject/` folder.
+- Delete all files and folders inside it (but keep the `GameProject/` folder itself).
+  - Tap each item → 🖊️ **Edit** → **Delete this file** → **Commit changes**.
 
----
-
-## 🚀 How to Use (Mobile-Friendly)
-
-### 1. **Fork this repository**
-- Open [github.com/JustOrangeSFM/FuzzumBuildToolOnline](https://github.com/JustOrangeSFM/FuzzumBuildToolOnline) in your mobile browser.
-- Tap **Fork** (top-right).
-- Select your account.
-
-### 2. **Clear the example project**
-- Go to `GameProject/`
-- Delete everything inside (keep the folder itself).
-  - Tap each file/folder → 🖊️ **Edit** → **Delete file** → **Commit**.
-
-### 3. **Upload your game**
+#### 3. **Upload your game**
 - Tap **Add file** → **Upload files**.
-- Select your entire game project (must include your `.project` file and `Source/` folder and etc.).
-- Ensure it’s placed under `GameProject/YourGame/`.
-- Change your game project -> find "EnginePath" and it should be like this `"EnginePath": "D:/a/FuzzumBuildToolOnline/FuzzumBuildToolOnline/Engine/Engine",`
+- Select your **entire game folder** (must include `Game.project`, `Source/`, `Assets/`, etc.).
+- Upload it into `GameProject/YourGame/` (create a subfolder with your game’s name).
+- ⚠️ Open your `Game.project` file and set:
+  ```json
+  "EnginePath": "D:/a/FuzzumBuildToolOnline/FuzzumBuildToolOnline/Engine/Engine"
+  ```
 
-### 4. **Configure the build script**
-- Open `[BUILD]BuildEngine[Android].bat`
-- Edit the line:
+#### 4. **Configure the build script**
+- Open the file: `[BUILD]BuildEngine[Android].bat`
+- Update this line to match your game folder name:
   ```bat
   BuildToolCpp.exe build --project=GameProject/YourGame/Game.project --platform=Android
   ```
-- Commit the change.
+- Click **Commit changes**.
 
-### 5. **Start the build**
-- Go to **Actions** → enable workflows if prompted.
-- Select **Build Android APK** → **Run workflow**.
-- Wait 1–3 minutes **(depends on the size of your project)**
+#### 5. **Start the build**
+- Go to the **Actions** tab.
+- If prompted, enable workflows.
+- Click **Build Android APK** → **Run workflow** → **Run workflow** (green button).
+- Wait **1–5 minutes** (depending on your project size).
 
-### 6. **Download your APK**
-- When the workflow succeeds (green checkmark), scroll down to **Artifacts**.
-- Download `game-apk.zip` → extract → install `*.apk` on your Android device.
-
-> 🔐 Allow **installation from unknown sources** in Android settings.
+#### 6. **Download your APK**
+- When the workflow finishes successfully (✅ green checkmark), scroll down to **Artifacts**.
+- Download `game-apk.zip` → extract it → install the `.apk` on your Android device.
+- 🔐 Go to **Android Settings → Apps → Special access → Install unknown apps** and allow your browser.
 
 ---
 
-## 📁 Project Structure Requirements
+### 📁 Required Project Structure
 
-Your game must follow the standard FuzzumEngine layout:
+Your game must follow this layout:
 
 ```
 YourGame/
 ├── Game.project
 ├── Assets/
 ├── Source/
-│   ├── Core/
-│   └── ...
+│   └── ... (your Lua/AngelScript/C++ modules)
 └── Plugins/ (optional)
 ```
 
-> 💡 Your `Game.project` must be valid and reference correct modules.
+> 💡 Make sure `Game.project` is valid and uses correct relative paths.
 
 ---
 
-## ⚠️ Notes
-
-- Do **not** commit folder `Build` in projects or build outputs — they’re generated automatically.
-- The build uses **NDK r25b**, **JDK 17**, and **Android SDK 33**.
-
----
-
-## 🛠️ Need Help?
-
-- Ensure your `.project` path is correct.
-- Check **Actions logs** if the build fails.
-- Make sure `BuildToolCpp.exe` and `[BUILD]BuildEngine[Android].bat` are in the repo root (they are by default).
+### ⚠️ Notes
+- Do **not** commit any `Build/` folders — they are generated automatically.
+- The build environment uses:
+  - **Android NDK r25b**
+  - **JDK 17**
+  - **Android SDK API 33**
+- `BuildToolCpp.exe` and engine binaries are **pre-included** and **proprietary** (not open source).
 
 ---
 
-Made with ❤️ for mobile game developers who want freedom from the desktop.
+### 📜 License
+- Build scripts and documentation: **MIT License**
+- `BuildToolCpp.exe`, engine binaries, and internal tools: **Proprietary — not licensed for redistribution**
 
-**No Termux. No setup. Just build.**
+Full license: [LICENSE](./LICENSE)
+
+---
+
+### ❓ Need Help?
+- Check the **Actions logs** if the build fails.
+- Verify your `EnginePath` in `Game.project`.
+- Ensure your game folder is placed under `GameProject/`.
+
+> Made with ❤️ for indie developers who want true mobile freedom.  
+> **No desktop. No Termux. Just build.**
+
+---
+
+## 🇷🇺 Русский
+
+### 🚀 Как использовать (на телефоне)
+
+#### 1. **Сделайте форк репозитория**
+- Откройте [github.com/JustOrangeSFM/FuzzumBuildToolOnline](https://github.com/JustOrangeSFM/FuzzumBuildToolOnline) в браузере телефона.
+- Нажмите **Fork** (вверху справа) → выберите свой аккаунт.
+
+#### 2. **Удалите пример проекта**
+- Перейдите в папку `GameProject/`.
+- Удалите все файлы и папки внутри (саму папку `GameProject/` оставьте).
+  - Нажмите на каждый элемент → 🖊️ **Edit** → **Delete this file** → **Commit changes**.
+
+#### 3. **Загрузите свою игру**
+- Нажмите **Add file** → **Upload files**.
+- Выберите **всю папку вашей игры** (должны быть `Game.project`, `Source/`, `Assets/` и т.д.).
+- Загрузите её в `GameProject/ВашаИгра/` (создайте подпапку с названием вашей игры).
+- ⚠️ Откройте файл `Game.project` и укажите:
+  ```json
+  "EnginePath": "D:/a/FuzzumBuildToolOnline/FuzzumBuildToolOnline/Engine/Engine"
+  ```
+
+#### 4. **Настройте скрипт сборки**
+- Откройте файл: `[BUILD]BuildEngine[Android].bat`
+- Измените эту строку, указав имя вашей папки:
+  ```bat
+  BuildToolCpp.exe build --project=GameProject/ВашаИгра/Game.project --platform=Android
+  ```
+- Нажмите **Commit changes**.
+
+#### 5. **Запустите сборку**
+- Перейдите во вкладку **Actions**.
+- Если потребуется, включите workflows.
+- Нажмите **Build Android APK** → **Run workflow** → **Run workflow** (зелёная кнопка).
+- Подождите **1–5 минут** (зависит от размера проекта).
+
+#### 6. **Скачайте APK**
+- После успешной сборки (✅ зелёная галочка), пролистайте вниз до **Artifacts**.
+- Скачайте `game-apk.zip` → распакуйте → установите `.apk` на Android.
+- 🔐 Зайдите в **Настройки → Приложения → Специальный доступ → Установка неизвестных приложений** и разрешите установку для вашего браузера.
+
+---
+
+### 📁 Требуемая структура проекта
+
+```
+ВашаИгра/
+├── Game.project
+├── Assets/
+├── Source/
+│   └── ... (ваши модули на Lua/AngelScript/C++)
+└── Plugins/ (опционально)
+```
+
+> 💡 Убедитесь, что `Game.project` корректен и пути указаны правильно.
+
+---
+
+### ⚠️ Важно
+- **НЕ загружайте** папки `Build/` — они создаются автоматически.
+- Сборка использует:
+  - **Android NDK r25b**
+  - **JDK 17**
+  - **Android SDK API 33**
+- `BuildToolCpp.exe` и бинарники движка — **встроены** и **закрыты** (не open source).
+
+---
+
+### 📜 Лицензия
+- Скрипты сборки и документация: **MIT License**
+- `BuildToolCpp.exe`, бинарники движка и внутренние инструменты: **Проприетарные — запрещено распространение**
+
+Полный текст лицензии: [LICENSE](./LICENSE)
+
+---
+
+### ❓ Нужна помощь?
+- Смотрите **логи в Actions**, если сборка падает.
+- Проверьте `EnginePath` в `Game.project`.
+- Убедитесь, что папка игры лежит внутри `GameProject/`.
+
+> Сделано с ❤️ для независимых разработчиков, ценящих свободу на мобильных устройствах.  
+> **Без компьютера. Без Termux. Просто собери.**
+```
+
+---
